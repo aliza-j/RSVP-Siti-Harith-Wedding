@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RSVP | Siti & Harith</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <div class="card">
+
+    
+        <h1>You're Invited ! Please let us know if you can make it.</h1>
+
+        <div class="couple-name">
+            <h2>Siti</h2>
+            <div class="and">&</div>
+            <h2>Harith</h2>
+        </div>
+
+
+        <div class="event-details">
+
+            <div class="event-date">
+                <span class="diamond">◆</span>
+                <span>28 NOVEMBER 2026</span>
+                <span class="diamond">◆</span>
+            </div>
+
+            <div class="event-time">
+                (11:00 AM - 4:30 PM)
+            </div>
+
+            <div class="venue">
+                <span class="line"></span>
+                <span>DEWAN HANG LEKIR</span>
+                <span class="line"></span>
+            </div>
+
+        </div>
+
+        <div class="section-divider">
+            <span>✦</span>
+        </div>
+
+
+
+        <form id="rsvpForm">
+            <label>Your Name</label>
+            <input type="text" id="nama" required placeholder="Enter your full name">
+
+            <label>Will you attend?</label>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="hadir" value="Hadir" checked> Attend
+                </label>
+                <label>
+                    <input type="radio" name="hadir" value="Tidak Hadir"> Not Attend
+                </label>
+            </div>
+
+            <div id="jumlahBox">
+                <label>Total Attendance</label>
+                <!-- Changed default value to 1 to match min="1" -->
+                <input type="number" id="jumlah" min="1" max="5" value="1">
+            </div>
+
+            <label>Wishes</label>
+            <!-- Fixed: Kept on a single line to remove unwanted spaces -->
+            <textarea id="ucapan" placeholder="Your wishes" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+
+
+        <div id="message"></div>
+
+
+    </div>
+
+
+
+
+    <div class="wish-card">
+
+        <h2>
+        All Wishes
+        </h2>
+
+
+        <div id="wishes">
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+body{
+
+    margin:0;
+    padding:20px;
+    background:#eee0c9;
+    font-family:'Poppins',sans-serif;
+    color:#5b4636;
+
+}
+
+
+.container{
+
+    max-width:500px;
+    margin:auto;
+
+}
+
+
+.card,
+.wish-card{
+
+    background:#ffff;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:
+    0 10px 30px rgba(90,60,30,.15);
+    margin-bottom:25px;
+    overflow:hidden;
+
+}
+
+
+
+.ring{
+
+    font-size:40px;
+    text-align:center;
+
+}
+
+
+
+h1{
+
+font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #d6b07d;
+    text-align: center;
+    margin-bottom: 30px;
+
+}
+
+
+
+.couple-name{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;   
+    margin-bottom: 25px;
+}
+
+.couple-name h2{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #5d4638;
+    line-height: 1;
+    margin: 0;
+}
+
+.and{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    color: #8b6b4f;
+    line-height: 1;
+    margin: 0;
+}
+
+
+
+.event-details{
+    text-align:center;
+    margin:35px 0;
+}
+
+.event-date{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+
+    font-family:'Montserrat',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:4px;
+    color:#9EA4B8;
+    text-transform:uppercase;
+}
+
+.diamond{
+    font-size:8px;
+    color:#D5B47A;
+}
+
+.event-time{
+
+    margin-top:8px;
+
+    font-family:'Montserrat',sans-serif;
+    font-size:10px;
+    color:#AEB4C4;
+    letter-spacing:1px;
+}
+
+.venue{
+
+    margin-top:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+
+    font-family:'Montserrat',sans-serif;
+    font-size:14px;
+    font-weight:500;
+    letter-spacing:3px;
+    color:#D5B47A;
+    text-transform:uppercase;
+}
+
+.venue .line{
+
+    width:60px;
+    height:1px;
+    background:#E6D7BF;
+}
+
+.section-divider{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:40px 0;
+}
+
+.section-divider::before,
+.section-divider::after{
+
+    content:"";
+
+    width:42%;
+    height:1px;
+
+    background:#ECE3D7;
+}
+
+.section-divider span{
+
+    margin:0 15px;
+
+    color:#D5B47A;
+    font-size:16px;
+}
+
+label{
+
+    display:block;
+    margin-top:15px;
+    font-weight:500;
+
+}
+
+input,
+textarea,
+select{
+
+    width:100%;
+    box-sizing:border-box;
+    padding:12px;
+    margin-top:8px;
+    border-radius:12px;
+    border:1px solid #d8c2a8;
+    background:#fffdf8;
+    font-size:15px;
+    font-family: inherit; /* ✨ This forces the textarea to use 'Poppins' just like the input! */
+
+}
+
+textarea{
+
+    height:120px;
+    resize:none;
+
+}
+
+.radio {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 25px;
+}
+
+.radio label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #5a4434;
+    min-width: 120px;
+    text-align: center;
+}
+
+.radio input[type="radio"] {
+    width: 24px;
+    height: 24px;
+    accent-color: #8b6b4f;
+    cursor: pointer;
+    margin: 0;
+}
+
+button{
+
+    width:100%;
+    margin-top:25px;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    background:#8b6f47;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    transform:scale(1.03);
+    background:#c39c67;
+    color:#8b6f47;
+
+}
+
+.wish-card{
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(90,60,30,.15);
+    margin-bottom:25px;
+    overflow:hidden; /* Hide everything outside the card */
+}
+
+#wishes{
+    max-height:500px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding-right:8px;      /* Prevent text touching scrollbar */
+    box-sizing:border-box;
+
+    /* Hide scrollbar */
+    scrollbar-width:none;   /* Firefox */
+    -ms-overflow-style:none; /* IE */
+}
+
+#wishes::-webkit-scrollbar{
+    display:none;           /* Chrome, Edge, Safari */
+}
+
+.wish{
+    background:#fcf8f2;
+    border:1px solid #e7d8c3;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:16px;
+    box-sizing:border-box;
+    width:100%;
+    overflow:hidden;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
+    transition:.3s ease;
+}
+
+.wish:hover{
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.wish strong{
+    display:block;
+    font-size:16px;
+    color:#8b6f47;
+    margin-bottom:5px;
+    padding-bottom:5px;
+    border-bottom:1px solid #ece3d7;
+}
+
+.wish p{
+    margin:0;
+    color:#6a5647;
+    line-height:1.7;
+    white-space:pre-wrap;
+}
+
+.wish p::before{
+    content:"❝";
+    color:#d6b07d;
+    font-size:20px;
+    margin-right:6px;
+}
+
+.wish p::after{
+    content:"❞";
+    color:#d6b07d;
+    font-size:20px;
+    margin-left:6px;
+}
+
+
+
+
+
+@keyframes slideIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+@keyframes glow{
+
+    0%{
+        transform:scale(1);
+        box-shadow:0 0 0 rgba(212,175,55,0);
+    }
+
+    50%{
+        transform:scale(1.02);
+        box-shadow:0 2px 10px rgba(212,175,55,.25);
+    }
+
+    100%{
+        transform:scale(1);
+        box-shadow:0 0 0 rgba(212,175,55,0);
+    }
+
+}
