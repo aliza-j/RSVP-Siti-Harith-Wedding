@@ -1,14 +1,14 @@
 :root {
-  /* Elegant Rose-Gold & Soft Blush Palette (Not Black!) */
-  --bg-color: #faf5f2;             /* Soft warm blush-cream background */
-  --card-bg: #ffffff;              /* Clean crisp white card background */
-  --primary-color: #b76e79;        /* Luxurious rose gold / dusty rose */
-  --primary-hover: #a35d68;        /* Deeper rose on hover */
-  --accent-gold: #d4af37;          /* Champagne gold highlights */
-  --text-main: #4a3b3d;            /* Rich warm taupe-brown for main text */
-  --text-muted: #9c8889;           /* Soft muted rose-gray for subtitles */
-  --border-color: #f2e4e1;         /* Soft rose-tinted border */
-  --input-bg: #fffbf9;             /* Warm soft input background */
+  /* Elegant Soft Rose Gold & Blush Palette */
+  --bg-color: #faf5f2;             /* Soft warm blush cream */
+  --card-bg: #ffffff;              /* Pure white cards */
+  --primary-color: #b76e79;        /* Rose gold / dusty rose */
+  --primary-hover: #9c5560;        /* Deep rose gold */
+  --accent-gold: #d4af37;          /* Champagne gold */
+  --text-main: #4a3b3d;            /* Dark warm taupe */
+  --text-muted: #9c8889;           /* Soft muted rose-gray */
+  --border-color: #f2e4e1;         /* Rose-tinted border */
+  --input-bg: #fffbf9;             /* Input background */
   --shadow: 0 20px 40px rgba(183, 110, 121, 0.08);
   --radius: 24px;
 }
@@ -29,7 +29,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Soft Romantic Ambient Glows */
+/* Background Lights */
 .bg-glow {
   position: fixed;
   border-radius: 50%;
@@ -62,7 +62,7 @@ body {
   align-items: start;
 }
 
-/* Cards Base */
+/* Card Styling */
 .card {
   background: var(--card-bg);
   padding: 40px 35px;
@@ -71,7 +71,6 @@ body {
   border: 1px solid var(--border-color);
 }
 
-/* Form Card Details */
 .header-tag {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
@@ -176,25 +175,6 @@ body {
   font-size: 14px;
 }
 
-.form-intro {
-  margin-bottom: 22px;
-  text-align: center;
-}
-
-.form-intro h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--text-main);
-  letter-spacing: 0.5px;
-}
-
-.form-intro p {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-top: 6px;
-}
-
 /* Form Controls */
 .form-group {
   margin-bottom: 20px;
@@ -209,7 +189,9 @@ label {
   letter-spacing: 0.5px;
 }
 
-input, textarea {
+input[type="text"],
+input[type="number"],
+textarea {
   width: 100%;
   padding: 14px 18px;
   border-radius: 14px;
@@ -233,8 +215,66 @@ input:focus, textarea:focus {
 }
 
 textarea {
-  height: 120px;
+  height: 110px;
   resize: none;
+}
+
+/* Radio Option Styling */
+.radio-group {
+  display: flex;
+  gap: 15px;
+}
+
+.radio-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--input-bg);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+  transition: all 0.25s ease;
+}
+
+.radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #d4bebf;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.radio-option:has(input[type="radio"]:checked) {
+  border-color: var(--primary-color);
+  background: #fdf5f4;
 }
 
 button[type="submit"] {
@@ -246,7 +286,6 @@ button[type="submit"] {
   color: #ffffff;
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.5px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -302,7 +341,7 @@ button[type="submit"]:disabled {
   border: 1px solid #ffcdd2;
 }
 
-/* Wish Card Right Column */
+/* Wish Card Column */
 .wish-header {
   display: flex;
   align-items: center;
@@ -316,7 +355,6 @@ button[type="submit"]:disabled {
   font-family: 'Cormorant Garamond', serif;
   font-size: 28px;
   color: var(--text-main);
-  letter-spacing: 0.5px;
 }
 
 .wish-count-badge {
@@ -330,7 +368,7 @@ button[type="submit"]:disabled {
 }
 
 .wishes-container {
-  max-height: 540px;
+  max-height: 580px;
   overflow-y: auto;
   padding-right: 6px;
   scrollbar-width: thin;
@@ -381,7 +419,6 @@ button[type="submit"]:disabled {
   border-radius: 10px;
   text-transform: uppercase;
   font-weight: 600;
-  letter-spacing: 0.5px;
 }
 
 .wish-item p {
@@ -414,4 +451,23 @@ button[type="submit"]:disabled {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Dual Column for Desktop */
+@media (min-width: 992px) {
+  .container {
+    grid-template-columns: 1fr 1.15fr;
+    gap: 40px;
+  }
+  
+  .form-card {
+    position: sticky;
+    top: 40px;
+  }
+
+  .wishes-container {
+    max-height: 660px;
+  }
+}
