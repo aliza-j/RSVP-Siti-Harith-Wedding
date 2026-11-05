@@ -1,16 +1,16 @@
 :root {
-  /* Elegant Luxury Palette */
-  --bg-color: #121315;             /* Deep, sophisticated dark charcoal background */
-  --card-bg: #1a1c20;              /* Rich dark slate card background */
-  --primary-color: #d4af37;        /* Classic metallic gold */
-  --primary-hover: #e5c158;        /* Lighter, glowing gold on hover */
-  --accent-gold: #c5a059;          /* Muted gold for secondary accents */
-  --text-main: #f3efe6;            /* Soft warm white for primary text */
-  --text-muted: #b0a89e;           /* Elegant muted taupe for subtitles */
-  --border-color: #2c2f35;         /* Subtle dark border */
-  --input-bg: #141619;             /* Deep recessed input background */
-  --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  --radius: 20px;
+  /* Bright, Airy Luxury Palette */
+  --bg-color: #fcf9f2;             /* Warm luxury ivory/cream background */
+  --card-bg: #ffffff;              /* Clean crisp white card background */
+  --primary-color: #9c7c56;        /* Rich, warm antique bronze / gold */
+  --primary-hover: #816443;        /* Darker bronze on hover */
+  --accent-gold: #c5a059;          /* Muted champagne gold */
+  --text-main: #3a322c;            /* Deep warm espresso for primary text */
+  --text-muted: #8c7e73;           /* Elegant soft taupe for subtitles */
+  --border-color: #eee4d4;         /* Soft warm sandy border */
+  --input-bg: #fffdf9;             /* Slightly warmer input background */
+  --shadow: 0 20px 40px rgba(139, 107, 79, 0.08);
+  --radius: 24px;
 }
 
 * {
@@ -29,25 +29,25 @@ body {
   overflow-x: hidden;
 }
 
-/* Luxurious Soft Gold & Midnight Ambient Glows */
+/* Bright Soft Warm Ambient Glows */
 .bg-glow {
   position: fixed;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(100px);
   z-index: -1;
-  opacity: 0.18;
+  opacity: 0.6;
 }
 .bg-glow-1 {
-  width: 400px;
-  height: 400px;
-  background: var(--primary-color);
+  width: 450px;
+  height: 450px;
+  background: #f7edd9;
   top: -100px;
   left: -100px;
 }
 .bg-glow-2 {
   width: 500px;
   height: 500px;
-  background: #7a6335;
+  background: #f4ead6;
   bottom: -150px;
   right: -150px;
 }
@@ -68,7 +68,7 @@ body {
   padding: 40px 35px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  border: 1px solid rgba(212, 175, 55, 0.15); /* Delicate gold outline */
+  border: 1px solid var(--border-color);
 }
 
 /* Form Card Details */
@@ -132,7 +132,7 @@ body {
   margin-top: 8px;
   font-family: 'Montserrat', sans-serif;
   font-size: 11px;
-  color: #7c7368;
+  color: #a89a8e;
   letter-spacing: 2px;
 }
 
@@ -204,7 +204,7 @@ label {
   display: block;
   font-size: 13px;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-main);
   margin-bottom: 8px;
   letter-spacing: 0.5px;
 }
@@ -212,7 +212,7 @@ label {
 input, textarea {
   width: 100%;
   padding: 14px 18px;
-  border-radius: 12px;
+  border-radius: 14px;
   border: 1px solid var(--border-color);
   background: var(--input-bg);
   font-family: inherit;
@@ -222,14 +222,14 @@ input, textarea {
 }
 
 input::placeholder, textarea::placeholder {
-  color: #555d69;
+  color: #bfaea0;
 }
 
 input:focus, textarea:focus {
   outline: none;
   border-color: var(--primary-color);
-  background: #191c21;
-  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.12);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(156, 124, 86, 0.12);
 }
 
 textarea {
@@ -242,10 +242,10 @@ button[type="submit"] {
   padding: 16px;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(135deg, #d4af37 0%, #b8972e 100%);
-  color: #121315;
+  background: linear-gradient(135deg, #9c7c56 0%, #816443 100%);
+  color: #ffffff;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.5px;
   cursor: pointer;
   display: flex;
@@ -253,13 +253,13 @@ button[type="submit"] {
   justify-content: center;
   gap: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 8px 20px rgba(156, 124, 86, 0.25);
 }
 
 button[type="submit"]:hover {
-  background: linear-gradient(135deg, #e5c158 0%, #c5a059 100%);
+  background: linear-gradient(135deg, #b08d63 0%, #9c7c56 100%);
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 10px 25px rgba(156, 124, 86, 0.35);
 }
 
 button[type="submit"]:active {
@@ -275,7 +275,7 @@ button[type="submit"]:disabled {
 .message-banner {
   margin-top: 15px;
   padding: 0;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 13px;
   text-align: center;
   max-height: 0;
@@ -291,15 +291,15 @@ button[type="submit"]:disabled {
 }
 
 .message-banner.success {
-  background-color: rgba(46, 125, 50, 0.15);
-  color: #81c784;
-  border: 1px solid rgba(46, 125, 50, 0.3);
+  background-color: #edf7ed;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
 }
 
 .message-banner.error {
-  background-color: rgba(198, 40, 40, 0.15);
-  color: #e57373;
-  border: 1px solid rgba(198, 40, 40, 0.3);
+  background-color: #fde8e8;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
 }
 
 /* Wish Card Right Column */
@@ -320,13 +320,13 @@ button[type="submit"]:disabled {
 }
 
 .wish-count-badge {
-  background: rgba(212, 175, 55, 0.1);
+  background: #fbf5ee;
   color: var(--primary-color);
   font-size: 12px;
   font-weight: 600;
   padding: 5px 14px;
   border-radius: 20px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid var(--border-color);
 }
 
 .wishes-container {
@@ -346,17 +346,18 @@ button[type="submit"]:disabled {
 }
 
 .wish-item {
-  background: var(--input-bg);
+  background: #faf6f0;
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 20px;
   margin-bottom: 16px;
   animation: fadeIn 0.4s ease forwards;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .wish-item:hover {
-  border-color: rgba(212, 175, 55, 0.3);
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(139, 107, 79, 0.06);
 }
 
 .wish-item-header {
@@ -375,17 +376,17 @@ button[type="submit"]:disabled {
 .new-badge {
   font-size: 10px;
   background: var(--primary-color);
-  color: #121315;
+  color: #ffffff;
   padding: 2px 8px;
   border-radius: 10px;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.5px;
 }
 
 .wish-item p {
   font-size: 14px;
-  color: #d1cbc1;
+  color: #5c5047;
   line-height: 1.7;
   white-space: pre-wrap;
 }
