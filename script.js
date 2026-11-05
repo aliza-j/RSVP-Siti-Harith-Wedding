@@ -1,33 +1,29 @@
-// Paste your Google Apps Script Web App URL here
+// Google Apps Script Web App URL
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwbj-YsLPqKwRWyTGGhnjVqQVipmTpRaMaEsoeVwYEp7oQCb_5IKvFk2g6U62jaicNUGQ/exec";
 
-const form = document.getElementById("rsvpForm");
-const jumlahBox = document.getElementById("jumlahBox");
+const form = document.getElementById("wishForm");
 const message = document.getElementById("message");
 const wishesBox = document.getElementById("wishes");
+const submitBtn = document.getElementById("submitBtn");
+const wishCountBadge = document.getElementById("wishCount");
 
-// Show / hide jumlah kehadiran
-document.querySelectorAll('input[name="hadir"]').forEach(radio => {
-    radio.addEventListener("change", () => {
-        if (radio.value === "Tidak Hadir" && radio.checked) {
-            jumlahBox.style.display = "none";
-        } else if (radio.value === "Hadir" && radio.checked) {
-            jumlahBox.style.display = "block";
-        }
-    });
-});
-
-// Submit RSVP
+// Submit Wishes Form
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const hadir = document.querySelector('input[name="hadir"]:checked').value;
+    const namaInput = document.getElementById("nama").value.trim();
+    const ucapanInput = document.getElementById("ucapan").value.trim();
+
+    if (!namaInput || !ucapanInput) return;
+
+    // Loading State UI
+    submitBtn.disabled = true;
+    submitBtn.classList.add("loading");
+    submitBtn.querySelector("span").textContent = "Sending...";
 
     const data = {
-        nama: document.getElementById("nama").value.trim(),
-        kehadiran: hadir,
-        jumlah: hadir === "Hadir" ? document.getElementById("jumlah").value : 0,
-        ucapan: document.getElementById("ucapan").value.trim() // Added trim() to clear accidental spaces
+        nama: namaInput,
+        ucapan: ucapanInput
     };
 
     try {
@@ -36,23 +32,34 @@ form.addEventListener("submit", async (e) => {
             body: JSON.stringify(data)
         });
 
-        message.innerHTML = "Submited successfully ! Thank you";
+        showMessage("Thank you! Your wish has been posted.", "success");
         form.reset();
-        jumlahBox.style.display = "block";
 
-        // Reload wishes immediately after a successful post
-        loadWishes();
-
-        setTimeout(() => {
-            message.innerHTML = "";
-        }, 4000);
+        // Reload wishes wall immediately
+        await loadWishes();
 
     } catch (error) {
-        message.innerHTML = "Try Again !";
+        console.error("Error submitting wish:", error);
+        showMessage("Failed to submit. Please try again!", "error");
+    } finally {
+        // Reset Button UI
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("loading");
+        submitBtn.querySelector("span").textContent = "Send Wishes";
     }
 });
 
-// Load wishes from Web App
+// Helper for temporary status messages
+function showMessage(msgText, type) {
+    message.textContent = msgText;
+    message.className = `message-banner ${type} show`;
+
+    setTimeout(() => {
+        message.className = "message-banner";
+    }, 4000);
+}
+
+// Load wishes from Google Web App
 async function loadWishes() {
     try {
         const response = await fetch(SCRIPT_URL);
@@ -60,42 +67,59 @@ async function loadWishes() {
         displayWishes(wishes);
     } catch (error) {
         console.error("Error loading wishes:", error);
+        wishesBox.innerHTML = `<div class="empty-state">Unable to load wishes right now.</div>`;
     }
 }
 
-// Safely display wishes without security bugs
+// Render wishes safely
 function displayWishes(wishes) {
     wishesBox.innerHTML = "";
 
-    // Guard clause: Make sure data returned is actually an array
-    if (!Array.isArray(wishes)) {
-        console.error("Expected an array of wishes, but got:", wishes);
+    if (!Array.isArray(wishes) || wishes.length === 0) {
+        wishCountBadge.textContent = "0 Wishes";
+        wishesBox.innerHTML = `<div class="empty-state">Be the first to leave a wish for Siti & Harith! ✨</div>`;
         return;
     }
 
-    wishes.slice(0, 8).forEach((wish, index) => {
-        const div = document.createElement("div");
-        div.className = "wish";
+    // Filter out invalid items and get total count
+    const validWishes = wishes.filter(w => w && (w.nama || w.ucapan));
+    wishCountBadge.textContent = `${validWishes.length} ${validWishes.length === 1 ? 'Wish' : 'Wishes'}`;
 
+    validWishes.forEach((wish, index) => {
+        const div = document.createElement("div");
+        div.className = "wish-item";
+
+        // Add badge for newest post
         if (index === 0) {
-            div.classList.add("new");
+            div.classList.add("is-new");
         }
 
-        // Secure Text Insertion: Using separate elements to prevent XSS attacks
+        const headerDiv = document.createElement("div");
+        headerDiv.className = "wish-item-header";
+
         const strong = document.createElement("strong");
-        strong.textContent =  wish.nama || 'Anonim';
+        strong.textContent = wish.nama || "Anonymous";
+
+        headerDiv.appendChild(strong);
+
+        if (index === 0) {
+            const badge = document.createElement("span");
+            badge.className = "new-badge";
+            badge.textContent = "Latest";
+            headerDiv.appendChild(badge);
+        }
 
         const p = document.createElement("p");
-        p.textContent = wish.ucapan || '';
+        p.textContent = wish.ucapan || "";
 
-        div.appendChild(strong);
+        div.appendChild(headerDiv);
         div.appendChild(p);
         wishesBox.appendChild(div);
     });
 }
 
-// Auto refresh every 5 seconds
-setInterval(loadWishes, 5000);
+// Auto refresh every 7 seconds
+setInterval(loadWishes, 7000);
 
-// First load
+// Initial Load
 loadWishes();
