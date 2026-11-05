@@ -1,15 +1,15 @@
 :root {
-  /* Bright, Airy Luxury Palette */
-  --bg-color: #fcf9f2;             /* Warm luxury ivory/cream background */
+  /* Elegant Rose-Gold & Soft Blush Palette (Not Black!) */
+  --bg-color: #faf5f2;             /* Soft warm blush-cream background */
   --card-bg: #ffffff;              /* Clean crisp white card background */
-  --primary-color: #9c7c56;        /* Rich, warm antique bronze / gold */
-  --primary-hover: #816443;        /* Darker bronze on hover */
-  --accent-gold: #c5a059;          /* Muted champagne gold */
-  --text-main: #3a322c;            /* Deep warm espresso for primary text */
-  --text-muted: #8c7e73;           /* Elegant soft taupe for subtitles */
-  --border-color: #eee4d4;         /* Soft warm sandy border */
-  --input-bg: #fffdf9;             /* Slightly warmer input background */
-  --shadow: 0 20px 40px rgba(139, 107, 79, 0.08);
+  --primary-color: #b76e79;        /* Luxurious rose gold / dusty rose */
+  --primary-hover: #a35d68;        /* Deeper rose on hover */
+  --accent-gold: #d4af37;          /* Champagne gold highlights */
+  --text-main: #4a3b3d;            /* Rich warm taupe-brown for main text */
+  --text-muted: #9c8889;           /* Soft muted rose-gray for subtitles */
+  --border-color: #f2e4e1;         /* Soft rose-tinted border */
+  --input-bg: #fffbf9;             /* Warm soft input background */
+  --shadow: 0 20px 40px rgba(183, 110, 121, 0.08);
   --radius: 24px;
 }
 
@@ -29,7 +29,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Bright Soft Warm Ambient Glows */
+/* Soft Romantic Ambient Glows */
 .bg-glow {
   position: fixed;
   border-radius: 50%;
@@ -40,14 +40,14 @@ body {
 .bg-glow-1 {
   width: 450px;
   height: 450px;
-  background: #f7edd9;
+  background: #fceceb;
   top: -100px;
   left: -100px;
 }
 .bg-glow-2 {
   width: 500px;
   height: 500px;
-  background: #f4ead6;
+  background: #f7e3df;
   bottom: -150px;
   right: -150px;
 }
@@ -79,7 +79,7 @@ body {
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--primary-color);
   margin-bottom: 20px;
 }
 
@@ -132,7 +132,7 @@ body {
   margin-top: 8px;
   font-family: 'Montserrat', sans-serif;
   font-size: 11px;
-  color: #a89a8e;
+  color: #b09c9d;
   letter-spacing: 2px;
 }
 
@@ -222,14 +222,14 @@ input, textarea {
 }
 
 input::placeholder, textarea::placeholder {
-  color: #bfaea0;
+  color: #c9b3b4;
 }
 
 input:focus, textarea:focus {
   outline: none;
   border-color: var(--primary-color);
   background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(156, 124, 86, 0.12);
+  box-shadow: 0 0 0 4px rgba(183, 110, 121, 0.12);
 }
 
 textarea {
@@ -242,7 +242,7 @@ button[type="submit"] {
   padding: 16px;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(135deg, #9c7c56 0%, #816443 100%);
+  background: linear-gradient(135deg, #b76e79 0%, #9c5560 100%);
   color: #ffffff;
   font-size: 15px;
   font-weight: 500;
@@ -253,13 +253,13 @@ button[type="submit"] {
   justify-content: center;
   gap: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(156, 124, 86, 0.25);
+  box-shadow: 0 8px 20px rgba(183, 110, 121, 0.25);
 }
 
 button[type="submit"]:hover {
-  background: linear-gradient(135deg, #b08d63 0%, #9c7c56 100%);
+  background: linear-gradient(135deg, #c77f8a 0%, #b76e79 100%);
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(156, 124, 86, 0.35);
+  box-shadow: 0 10px 25px rgba(183, 110, 121, 0.35);
 }
 
 button[type="submit"]:active {
@@ -320,7 +320,7 @@ button[type="submit"]:disabled {
 }
 
 .wish-count-badge {
-  background: #fbf5ee;
+  background: #fcf4f3;
   color: var(--primary-color);
   font-size: 12px;
   font-weight: 600;
@@ -346,7 +346,7 @@ button[type="submit"]:disabled {
 }
 
 .wish-item {
-  background: #faf6f0;
+  background: #fbf6f5;
   border: 1px solid var(--border-color);
   border-radius: 18px;
   padding: 20px;
@@ -357,7 +357,7 @@ button[type="submit"]:disabled {
 
 .wish-item:hover {
   background: #ffffff;
-  box-shadow: 0 6px 20px rgba(139, 107, 79, 0.06);
+  box-shadow: 0 6px 20px rgba(183, 110, 121, 0.06);
 }
 
 .wish-item-header {
@@ -386,7 +386,7 @@ button[type="submit"]:disabled {
 
 .wish-item p {
   font-size: 14px;
-  color: #5c5047;
+  color: #615052;
   line-height: 1.7;
   white-space: pre-wrap;
 }
@@ -414,23 +414,4 @@ button[type="submit"]:disabled {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Desktop Dual Layout (992px+) */
-@media (min-width: 992px) {
-  .container {
-    grid-template-columns: 1fr 1.15fr;
-    gap: 40px;
-  }
-  
-  .form-card {
-    position: sticky;
-    top: 40px;
-  }
-
-  .wishes-container {
-    max-height: 640px;
-  }
-}
+  from { opacity: 0; transform: translateY(
