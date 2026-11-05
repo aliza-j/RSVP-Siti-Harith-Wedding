@@ -1,113 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Wishes | Siti & Harith</title>
 
-<title>RSVP | Siti & Harith</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+  <!-- Decorative Background Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
 
-<div class="container">
+  <main class="container">
 
-    <div class="card">
+    <!-- Left Column: Couple Info & Wish Submission Form -->
+    <section class="card form-card">
+      
+      <div class="header-tag">Wedding Guestbook</div>
 
-    
-        <h1>You're Invited ! Please let us know if you can make it.</h1>
+      <div class="couple-name">
+        <h2>Siti</h2>
+        <span class="and">&amp;</span>
+        <h2>Harith</h2>
+      </div>
 
-        <div class="couple-name">
-            <h2>Siti</h2>
-            <div class="and">&</div>
-            <h2>Harith</h2>
+      <div class="event-details">
+        <div class="event-date">
+          <span class="diamond">◆</span>
+          <span>28 NOVEMBER 2026</span>
+          <span class="diamond">◆</span>
+        </div>
+        <div class="event-time">(11:30 AM - 4:30 PM)</div>
+        <div class="venue">
+          <span class="line"></span>
+          <span>DEWAN HANG LEKIR</span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <div class="section-divider">
+        <span>✦</span>
+      </div>
+
+      <div class="form-intro">
+        <h3>Send Your Warm Wishes</h3>
+        <p>Leave a message of love and blessing for the bride and groom.</p>
+      </div>
+
+      <form id="wishForm">
+        <div class="form-group">
+          <label for="nama">Your Name</label>
+          <input type="text" id="nama" required placeholder="e.g. Sarah & Family">
         </div>
 
-
-        <div class="event-details">
-
-            <div class="event-date">
-                <span class="diamond">◆</span>
-                <span>28 NOVEMBER 2026</span>
-                <span class="diamond">◆</span>
-            </div>
-
-            <div class="event-time">
-                (11:30 AM - 4:30 PM)
-            </div>
-
-            <div class="venue">
-                <span class="line"></span>
-                <span>DEWAN HANG LEKIR</span>
-                <span class="line"></span>
-            </div>
-
+        <div class="form-group">
+          <label for="ucapan">Your Wishes & Blessings</label>
+          <textarea id="ucapan" required placeholder="Write your heart felt blessings here..."></textarea>
         </div>
 
-        <div class="section-divider">
-            <span>✦</span>
+        <button type="submit" id="submitBtn">
+          <span>Send Wishes</span>
+          <svg class="send-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+
+      <div id="message" class="message-banner"></div>
+
+    </section>
+
+    <!-- Right Column: Wish Display Board -->
+    <section class="card wish-card">
+      <div class="wish-header">
+        <h2>Warm Wishes</h2>
+        <span class="wish-count-badge" id="wishCount">0 Wishes</span>
+      </div>
+
+      <div id="wishes" class="wishes-container">
+        <!-- Wishes will be injected dynamically by script.js -->
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>Loading blessings...</p>
         </div>
+      </div>
+    </section>
 
+  </main>
 
-
-        <form id="rsvpForm">
-            <label>Your Name</label>
-            <input type="text" id="nama" required placeholder="Enter your name">
-
-            <label>Will you attend?</label>
-            <div class="radio">
-                <label>
-                    <input type="radio" name="hadir" value="Hadir" checked> Attend
-                </label>
-                <label>
-                    <input type="radio" name="hadir" value="Tidak Hadir"> Not Attend
-                </label>
-            </div>
-
-            <div id="jumlahBox">
-                <label>Total Attendance</label>
-                <input type="number" id="jumlah" min="1" max="5" value="1">
-            </div>
-
-            <label>Wishes</label>
-            <textarea id="ucapan" placeholder="Your wishes" required></textarea>
-
-            <button type="submit">Submit</button>
-        </form>
-
-
-        <div id="message"></div>
-
-
-    </div>
-
-
-
-
-    <div class="wish-card">
-
-        <h2>
-        All Wishes
-        </h2>
-
-
-        <div id="wishes">
-
-        </div>
-
-    </div>
-
-
-</div>
-
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
