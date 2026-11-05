@@ -1,28 +1,44 @@
 // Google Apps Script Web App URL
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwbj-YsLPqKwRWyTGGhnjVqQVipmTpRaMaEsoeVwYEp7oQCb_5IKvFk2g6U62jaicNUGQ/exec";
 
-const form = document.getElementById("wishForm");
+const form = document.getElementById("rsvpForm");
+const jumlahBox = document.getElementById("jumlahBox");
 const message = document.getElementById("message");
 const wishesBox = document.getElementById("wishes");
 const submitBtn = document.getElementById("submitBtn");
 const wishCountBadge = document.getElementById("wishCount");
 
-// Submit Wishes Form
+// Toggle Total Attendance box when attendance choice changes
+document.querySelectorAll('input[name="hadir"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+        if (radio.value === "Tidak Hadir" && radio.checked) {
+            jumlahBox.style.display = "none";
+        } else if (radio.value === "Hadir" && radio.checked) {
+            jumlahBox.style.display = "block";
+        }
+    });
+});
+
+// Form Submit Handler
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const hadir = document.querySelector('input[name="hadir"]:checked').value;
     const namaInput = document.getElementById("nama").value.trim();
     const ucapanInput = document.getElementById("ucapan").value.trim();
+    const jumlahInput = hadir === "Hadir" ? document.getElementById("jumlah").value : 0;
 
     if (!namaInput || !ucapanInput) return;
 
-    // Loading State UI
+    // Button Loading UI
     submitBtn.disabled = true;
     submitBtn.classList.add("loading");
-    submitBtn.querySelector("span").textContent = "Sending...";
+    submitBtn.querySelector("span").textContent = "Submitting...";
 
     const data = {
         nama: namaInput,
+        kehadiran: hadir,
+        jumlah: jumlahInput,
         ucapan: ucapanInput
     };
 
@@ -32,24 +48,24 @@ form.addEventListener("submit", async (e) => {
             body: JSON.stringify(data)
         });
 
-        showMessage("Thank you! Your wish has been posted.", "success");
+        showMessage("Submitted successfully! Thank you.", "success");
         form.reset();
+        jumlahBox.style.display = "block"; // Reset attendance count visibility
 
-        // Reload wishes wall immediately
+        // Refresh wishes wall immediately
         await loadWishes();
 
     } catch (error) {
-        console.error("Error submitting wish:", error);
-        showMessage("Failed to submit. Please try again!", "error");
+        console.error("Error submitting RSVP:", error);
+        showMessage("Try Again! Unable to submit.", "error");
     } finally {
-        // Reset Button UI
         submitBtn.disabled = false;
         submitBtn.classList.remove("loading");
-        submitBtn.querySelector("span").textContent = "Send Wishes";
+        submitBtn.querySelector("span").textContent = "Submit RSVP & Wishes";
     }
 });
 
-// Helper for temporary status messages
+// Show status message banner
 function showMessage(msgText, type) {
     message.textContent = msgText;
     message.className = `message-banner ${type} show`;
@@ -59,7 +75,7 @@ function showMessage(msgText, type) {
     }, 4000);
 }
 
-// Load wishes from Google Web App
+// Fetch wishes from backend
 async function loadWishes() {
     try {
         const response = await fetch(SCRIPT_URL);
@@ -71,7 +87,7 @@ async function loadWishes() {
     }
 }
 
-// Render wishes safely
+// Render wishes onto the wall
 function displayWishes(wishes) {
     wishesBox.innerHTML = "";
 
@@ -81,7 +97,6 @@ function displayWishes(wishes) {
         return;
     }
 
-    // Filter out invalid items and get total count
     const validWishes = wishes.filter(w => w && (w.nama || w.ucapan));
     wishCountBadge.textContent = `${validWishes.length} ${validWishes.length === 1 ? 'Wish' : 'Wishes'}`;
 
@@ -89,7 +104,6 @@ function displayWishes(wishes) {
         const div = document.createElement("div");
         div.className = "wish-item";
 
-        // Add badge for newest post
         if (index === 0) {
             div.classList.add("is-new");
         }
@@ -102,6 +116,12 @@ function displayWishes(wishes) {
 
         headerDiv.appendChild(strong);
 
+        if (index === 0) {
+            const badge = document.createElement("span");
+            badge.className = "new-badge";
+            badge.textContent = "Latest";
+            headerDiv.appendChild(badge);
+        }
 
         const p = document.createElement("p");
         p.textContent = wish.ucapan || "";
@@ -112,7 +132,7 @@ function displayWishes(wishes) {
     });
 }
 
-// Auto refresh every 7 seconds
+// Refresh wishes every 7 seconds
 setInterval(loadWishes, 7000);
 
 // Initial Load
