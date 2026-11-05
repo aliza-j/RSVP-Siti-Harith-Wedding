@@ -102,12 +102,6 @@ function displayWishes(wishes) {
 
         headerDiv.appendChild(strong);
 
-        if (index === 0) {
-            const badge = document.createElement("span");
-            badge.className = "new-badge";
-            badge.textContent = "Latest";
-            headerDiv.appendChild(badge);
-        }
 
         const p = document.createElement("p");
         p.textContent = wish.ucapan || "";
